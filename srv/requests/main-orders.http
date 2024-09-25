@@ -1,0 +1,12 @@
+@server = http://localhost:36569
+@auth = Authorization: Basic test:
+
+### Main.Orders
+POST {{server}}/main/Orders
+Content-Type: application/json
+{{auth}}
+
+{
+    "amount": 10.00,
+    "customer_ID": "c6ce78a3-ffb9-4748-867d-de6138d5b57b"
+}

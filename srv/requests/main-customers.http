@@ -1,5 +1,5 @@
 @server = http://localhost:36569
-@auth = Authorization: Basic alice:
+@auth = Authorization: Basic test:
 
 ### Main.Customers
 GET {{server}}/main/Customers
@@ -49,18 +49,3 @@ Content-Type: application/json
 ### Main.Customers
 DELETE {{server}}/main/Customers('c6ce78a3-ffb9-4748-867d-de6138d5b57b')
 {{auth}}
-
-### Main.Orders
-GET {{server}}/main/Orders?$expand=customer
-Content-Type: application/json
-{{auth}}
-
-### Main.Orders
-POST {{server}}/main/Orders
-Content-Type: application/json
-{{auth}}
-
-{
-    "amount": 20.00,
-    "customer_ID": "c6ce78a3-ffb9-4748-867d-de6138d5b57b"
-}

@@ -1,0 +1,2 @@
+@server = http://localhost:36569
+@auth = Authorization: Basic test:
