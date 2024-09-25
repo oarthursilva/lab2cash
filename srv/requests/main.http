@@ -1,13 +1,18 @@
-@server = http://localhost:33695
+@server = http://localhost:36569
 @auth = Authorization: Basic alice:
 
 ### Main.Customers
-GET {{server}}/odata/v4/main/Customers
+GET {{server}}/main/Customers
 Content-Type: application/json
 {{auth}}
 
 ### Main.Customers
-POST {{server}}/odata/v4/main/Customers
+GET {{server}}/main/Customers?$expand=order
+Content-Type: application/json
+{{auth}}
+
+### Main.Customers
+POST {{server}}/main/Customers
 Content-Type: application/json
 {{auth}}
 
@@ -17,7 +22,22 @@ Content-Type: application/json
 }
 
 ### Main.Customers
-PATCH {{server}}/odata/v4/main/Customers(2)
+POST {{server}}/main/Customers
+Content-Type: application/json
+{{auth}}
+
+{
+    "name": "name-321654987",
+    "age": 18,
+    "orders": [{
+        "amount": 10.00
+    }, {
+        "amount": 20.00
+    }]
+}
+
+### Main.Customers
+PATCH {{server}}/main/Customers(2)
 Content-Type: application/json
 {{auth}}
 
@@ -27,6 +47,20 @@ Content-Type: application/json
 }
 
 ### Main.Customers
-DELETE {{server}}/odata/v4/main/Customers(2)
+DELETE {{server}}/main/Customers('c6ce78a3-ffb9-4748-867d-de6138d5b57b')
 {{auth}}
 
+### Main.Orders
+GET {{server}}/main/Orders?$expand=customer
+Content-Type: application/json
+{{auth}}
+
+### Main.Orders
+POST {{server}}/main/Orders
+Content-Type: application/json
+{{auth}}
+
+{
+    "amount": 20.00,
+    "customer_ID": "c6ce78a3-ffb9-4748-867d-de6138d5b57b"
+}
